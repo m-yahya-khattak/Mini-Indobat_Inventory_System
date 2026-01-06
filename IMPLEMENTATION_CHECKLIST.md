@@ -10,109 +10,109 @@ Use this checklist to track the implementation progress of the Mini-Indobat Inve
 5. Sticking to Instructions (Follow requirements precisely, don't overdo it)
 
 ## Phase 1: Project Initialization
-- [ ] Create project structure (backend/ and frontend/ directories)
-- [ ] Initialize Go module in backend
-- [ ] Initialize Next.js project in frontend
-- [ ] Set up .gitignore files
+- [x] Create project structure (backend/ and frontend/ directories) ✅
+- [x] Initialize Go module in backend ✅
+- [x] Initialize Next.js project in frontend ✅
+- [x] Set up .gitignore files ✅
 - [ ] Initialize Git repository
 - [ ] Create .env.example files for configuration reference
 
 ## Phase 2: Database Setup & Infrastructure
 
 ### Database Schema Design
-- [ ] Design Products table schema
-  - [ ] id (primary key)
-  - [ ] name (drug name)
-  - [ ] stock (integer, not null, default 0)
-  - [ ] price (decimal/numeric)
-  - [ ] created_at, updated_at timestamps
-- [ ] Design Transactions/Orders table schema
-  - [ ] id (primary key)
-  - [ ] product_id (foreign key)
-  - [ ] quantity (integer)
-  - [ ] discount_percent (decimal)
-  - [ ] total_price (calculated)
-  - [ ] created_at timestamp
-- [ ] Create database migration files
-  - [ ] Use golang-migrate or GORM AutoMigrate
-  - [ ] Ensure migrations are versioned and reversible
+- [x] Design Products table schema ✅
+  - [x] id (primary key) ✅
+  - [x] name (drug name) ✅
+  - [x] stock (integer, not null, default 0) ✅
+  - [x] price (decimal/numeric) ✅
+  - [x] created_at, updated_at timestamps ✅
+- [x] Design Transactions/Orders table schema ✅
+  - [x] id (primary key) ✅
+  - [x] product_id (foreign key) ✅
+  - [x] quantity (integer) ✅
+  - [x] discount_percent (decimal) ✅
+  - [x] total_price (calculated) ✅
+  - [x] created_at timestamp ✅
+- [x] Create database migration files ✅
+  - [x] Use golang-migrate ✅
+  - [x] Ensure migrations are versioned and reversible ✅
 
 ### Backend Infrastructure
-- [ ] Set up database connection (PostgreSQL)
-- [ ] Configure environment variables (.env)
-- [ ] Set up database connection pooling
-- [ ] Create repository layer structure
-- [ ] Create service layer structure
-- [ ] Create handler layer structure
-- [ ] Set up HTTP router (Gin, Echo, or standard library)
-- [ ] Configure CORS for frontend communication
-- [ ] Set up logging system
-- [ ] Configure error handling middleware
-- [ ] Set up request validation
+- [x] Set up database connection (PostgreSQL) ✅
+- [x] Configure environment variables (.env) ✅
+- [x] Set up database connection pooling ✅
+- [x] Create repository layer structure ✅
+- [x] Create service layer structure ✅
+- [x] Create handler layer structure ✅
+- [x] Set up HTTP router (Gin) ✅
+- [x] Configure CORS for frontend communication ✅
+- [x] Set up logging system ✅
+- [x] Configure error handling middleware ✅
+- [x] Set up request validation ✅
 
 ## Phase 3: Backend - Product Management
 
 ### Product Repository Layer
-- [ ] Implement GetProducts() - List all products
-- [ ] Implement CreateProduct() - Add new product
-- [ ] Implement GetProductByID() - Get single product
-- [ ] Implement UpdateProductStock() - Update stock (for transactions)
-- [ ] Use parameterized queries (prevent SQL injection)
-- [ ] Add proper error handling
+- [x] Implement GetProducts() - List all products ✅
+- [x] Implement CreateProduct() - Add new product ✅
+- [x] Implement GetProductByID() - Get single product ✅
+- [x] Implement UpdateProductStock() - Update stock (for transactions) ✅
+- [x] Use parameterized queries (prevent SQL injection) ✅
+- [x] Add proper error handling ✅
 
 ### Product Service Layer
-- [ ] Implement GetProducts() service method
-- [ ] Implement CreateProduct() service method
-- [ ] Add business logic validation
-- [ ] Handle service-level errors
+- [x] Implement GetProducts() service method ✅
+- [x] Implement CreateProduct() service method ✅
+- [x] Add business logic validation ✅
+- [x] Handle service-level errors ✅
 
 ### Product Handler Layer
-- [ ] Implement GET /products endpoint
-  - [ ] Return: ID, Name, Stock, Price
-  - [ ] Proper HTTP status codes
-  - [ ] JSON response formatting
-- [ ] Implement POST /products endpoint
-  - [ ] Request body validation
-  - [ ] Proper HTTP status codes
-  - [ ] Error response formatting
+- [x] Implement GET /products endpoint ✅
+  - [x] Return: ID, Name, Stock, Price ✅
+  - [x] Proper HTTP status codes ✅
+  - [x] JSON response formatting ✅
+- [x] Implement POST /products endpoint ✅
+  - [x] Request body validation ✅
+  - [x] Proper HTTP status codes ✅
+  - [x] Error response formatting ✅
 
 ## Phase 4: Backend - Order/Transaction Management
 
 ### Transaction Repository Layer
-- [ ] Implement CreateOrder() with database transaction
-- [ ] Implement GetProductWithLock() - Use SELECT FOR UPDATE (row-level locking)
-- [ ] Implement UpdateStock() within transaction
-- [ ] Implement SaveTransactionHistory()
-- [ ] Ensure atomic operations (all or nothing)
-- [ ] Handle transaction rollback on errors
+- [x] Implement CreateOrder() with database transaction ✅
+- [x] Implement GetProductWithLock() - Use SELECT FOR UPDATE (row-level locking) ✅
+- [x] Implement UpdateStock() within transaction ✅
+- [x] Implement SaveTransactionHistory() ✅
+- [x] Ensure atomic operations (all or nothing) ✅
+- [x] Handle transaction rollback on errors ✅
 
 ### Transaction Service Layer
-- [ ] Implement CreateOrder() service method
-- [ ] Implement stock validation logic
-  - [ ] Check if stock is sufficient
-  - [ ] Return error if stock insufficient
-- [ ] Implement price calculation logic
-  - [ ] Calculate: (Price × Quantity) - (Discount %)
-  - [ ] Handle edge cases (negative discount, etc.)
-- [ ] Coordinate repository calls within transaction
-- [ ] Handle race condition scenarios
+- [x] Implement CreateOrder() service method ✅
+- [x] Implement stock validation logic ✅
+  - [x] Check if stock is sufficient ✅
+  - [x] Return error if stock insufficient ✅
+- [x] Implement price calculation logic ✅
+  - [x] Calculate: (Price × Quantity) - (Discount %) ✅
+  - [x] Handle edge cases (negative discount, etc.) ✅
+- [x] Coordinate repository calls within transaction ✅
+- [x] Handle race condition scenarios ✅
 
 ### Transaction Handler Layer
-- [ ] Implement POST /order endpoint
-  - [ ] Request body validation (product_id, quantity, discount_percent)
-  - [ ] Call service layer
-  - [ ] Return success response with order details
-  - [ ] Return error response if stock insufficient
-  - [ ] Proper HTTP status codes (200, 400, 500)
+- [x] Implement POST /order endpoint ✅
+  - [x] Request body validation (product_id, quantity, discount_percent) ✅
+  - [x] Call service layer ✅
+  - [x] Return success response with order details ✅
+  - [x] Return error response if stock insufficient ✅
+  - [x] Proper HTTP status codes (200, 400, 500) ✅
 
 ### Race Condition Protection (CRITICAL)
-- [ ] Implement database transaction with proper isolation level
-- [ ] Use SELECT FOR UPDATE to lock product row
-- [ ] Verify stock before and after lock
-- [ ] Test with concurrent requests (10 simultaneous requests for 1 stock)
-- [ ] Ensure only 1 request succeeds, 9 fail
-- [ ] Verify stock never goes negative
-- [ ] Test edge cases (zero stock, negative stock attempts)
+- [x] Implement database transaction with proper isolation level ✅ (SERIALIZABLE)
+- [x] Use SELECT FOR UPDATE to lock product row ✅
+- [x] Verify stock before and after lock ✅
+- [ ] Test with concurrent requests (10 simultaneous requests for 1 stock) ⏳ **PENDING TESTING**
+- [ ] Ensure only 1 request succeeds, 9 fail ⏳ **PENDING TESTING**
+- [x] Verify stock never goes negative ✅ (Database constraint + validation)
+- [ ] Test edge cases (zero stock, negative stock attempts) ⏳ **PENDING TESTING**
 
 ## Phase 5: Frontend - Project Setup
 
@@ -196,13 +196,13 @@ Use this checklist to track the implementation progress of the Mini-Indobat Inve
 ## Phase 9: Code Quality & Best Practices
 
 ### Backend Code Quality
-- [ ] Ensure Clean Architecture (Handler → Service → Repository)
-- [ ] Verify business logic is in Service layer, not Handler
-- [ ] Check all SQL queries use parameterized statements
-- [ ] Verify proper error handling throughout
-- [ ] Add meaningful comments where necessary
-- [ ] Ensure consistent code formatting
-- [ ] Verify variable naming is clear and descriptive
+- [x] Ensure Clean Architecture (Handler → Service → Repository) ✅
+- [x] Verify business logic is in Service layer, not Handler ✅
+- [x] Check all SQL queries use parameterized statements ✅
+- [x] Verify proper error handling throughout ✅
+- [x] Add meaningful comments where necessary ✅
+- [x] Ensure consistent code formatting ✅
+- [x] Verify variable naming is clear and descriptive ✅
 
 ### Frontend Code Quality
 - [ ] Organize components properly
@@ -239,17 +239,17 @@ Use this checklist to track the implementation progress of the Mini-Indobat Inve
 ## Phase 11: Final Checks
 
 ### Evaluation Criteria Compliance
-- [ ] ✅ Data Integrity: Stock never goes negative
-- [ ] ✅ Data Integrity: Using DB Transaction & Locking correctly
-- [ ] ✅ Code Structure: Clean Architecture / Layered
-- [ ] ✅ Code Structure: Clean folder structure, clear variable naming
-- [ ] ✅ Database: Table schema makes sense (separated tables)
-- [ ] ✅ Database: Using migration tool
-- [ ] ✅ Database: No hardcoded SQL (all parameterized)
-- [ ] ✅ Frontend: Functional display & UX
-- [ ] ✅ Frontend: Real-time validation (price changes)
-- [ ] ✅ Frontend: Loading state implemented
-- [ ] ✅ Nice to Have: Unit tests created
+- [x] ✅ Data Integrity: Stock never goes negative ✅ (DB constraint + validation)
+- [x] ✅ Data Integrity: Using DB Transaction & Locking correctly ✅ (SERIALIZABLE + SELECT FOR UPDATE)
+- [x] ✅ Code Structure: Clean Architecture / Layered ✅
+- [x] ✅ Code Structure: Clean folder structure, clear variable naming ✅
+- [x] ✅ Database: Table schema makes sense (separated tables) ✅
+- [x] ✅ Database: Using migration tool ✅ (golang-migrate)
+- [x] ✅ Database: No hardcoded SQL (all parameterized) ✅
+- [ ] ✅ Frontend: Functional display & UX ⏳ **IN PROGRESS**
+- [ ] ✅ Frontend: Real-time validation (price changes) ⏳ **IN PROGRESS**
+- [ ] ✅ Frontend: Loading state implemented ⏳ **IN PROGRESS**
+- [ ] ✅ Nice to Have: Unit tests created ⏳ **PENDING**
 
 ### Pre-Submission
 - [ ] Test complete application flow

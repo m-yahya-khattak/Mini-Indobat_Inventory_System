@@ -4,6 +4,8 @@ import (
 	"context"
 	"mini-indobat-inventory/internal/config"
 	"mini-indobat-inventory/internal/model"
+
+	"github.com/jackc/pgx/v5"
 )
 
 // ProductRepository handles product data access
@@ -77,7 +79,8 @@ func (r *ProductRepository) GetByID(ctx context.Context, id int) (*model.Product
 }
 
 // GetByIDWithLock retrieves a product by ID with row-level lock (for transactions)
-func (r *ProductRepository) GetByIDWithLock(ctx context.Context, tx interface{}, id int) (*model.Product, error) {
+// This uses SELECT FOR UPDATE to prevent race conditions
+func (r *ProductRepository) GetByIDWithLock(ctx context.Context, tx pgx.Tx, id int) (*model.Product, error) {
 	query := `
 		SELECT id, name, stock, price, created_at, updated_at
 		FROM products
@@ -88,22 +91,16 @@ func (r *ProductRepository) GetByIDWithLock(ctx context.Context, tx interface{},
 	var p model.Product
 	var err error
 
-	// Handle both transaction and regular connection
+	// Use transaction if provided, otherwise use connection pool
 	if tx != nil {
-		if pgxTx, ok := tx.(interface {
-			QueryRow(context.Context, string, ...interface{}) interface{ Scan(...interface{}) error }
-		}); ok {
-			// This is a simplified version - actual implementation depends on pgx transaction interface
-			// For now, we'll use the regular connection but with FOR UPDATE
-			err = config.DB.QueryRow(ctx, query, id).Scan(
-				&p.ID,
-				&p.Name,
-				&p.Stock,
-				&p.Price,
-				&p.CreatedAt,
-				&p.UpdatedAt,
-			)
-		}
+		err = tx.QueryRow(ctx, query, id).Scan(
+			&p.ID,
+			&p.Name,
+			&p.Stock,
+			&p.Price,
+			&p.CreatedAt,
+			&p.UpdatedAt,
+		)
 	} else {
 		err = config.DB.QueryRow(ctx, query, id).Scan(
 			&p.ID,
@@ -148,7 +145,7 @@ func (r *ProductRepository) Create(ctx context.Context, req model.CreateProductR
 }
 
 // UpdateStock updates the stock of a product (used in transactions)
-func (r *ProductRepository) UpdateStock(ctx context.Context, tx interface{}, productID int, newStock int) error {
+func (r *ProductRepository) UpdateStock(ctx context.Context, tx pgx.Tx, productID int, newStock int) error {
 	query := `
 		UPDATE products
 		SET stock = $1
@@ -157,9 +154,7 @@ func (r *ProductRepository) UpdateStock(ctx context.Context, tx interface{}, pro
 
 	var err error
 	if tx != nil {
-		// If transaction is provided, use it
-		// This is a simplified version - actual implementation needs proper pgx transaction handling
-		_, err = config.DB.Exec(ctx, query, newStock, productID)
+		_, err = tx.Exec(ctx, query, newStock, productID)
 	} else {
 		_, err = config.DB.Exec(ctx, query, newStock, productID)
 	}
