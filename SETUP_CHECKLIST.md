@@ -10,48 +10,72 @@ Use this checklist to set up the development environment for the Mini-Indobat In
 ## Environment Setup
 
 ### Install Go
-- [ ] Download and install Go (latest stable version)
+- [x] Download and install Go (latest stable version) ✅ **COMPLETED** - Go 1.23.4 installed
   ```bash
   # Download from https://golang.org/dl/
   # Or using package manager (Windows: Chocolatey, Linux: apt/yum, Mac: Homebrew)
   ```
-- [ ] Verify Go installation
+- [x] Verify Go installation ✅ **VERIFIED**
   ```bash
   go version
+  # Output: go version go1.23.4 windows/386
   ```
-- [ ] Set up GOPATH and GOROOT if needed
+- [ ] Set up GOPATH and GOROOT if needed (usually auto-configured)
   ```bash
   go env GOPATH
   go env GOROOT
   ```
 
 ### Install Node.js and npm
-- [ ] Download and install Node.js (LTS version recommended)
+- [x] Download and install Node.js (LTS version recommended) ✅ **COMPLETED** - Node.js v24.12.0 installed
   ```bash
   # Download from https://nodejs.org/
   # Or using package manager
   ```
-- [ ] Verify Node.js and npm installation
+- [x] Verify Node.js and npm installation ✅ **VERIFIED**
   ```bash
   node --version
+  # Output: v24.12.0
   npm --version
+  # Output: 11.6.2
   ```
 
 ### Install PostgreSQL
-- [ ] Download and install PostgreSQL
+- [ ] Download and install PostgreSQL ⚠️ **REQUIRED - NOT INSTALLED**
   ```bash
-  # Download from https://www.postgresql.org/download/
-  # Or using package manager
+  # For Windows:
+  # Option 1: Download installer from https://www.postgresql.org/download/windows/
+  # Option 2: Using Chocolatey (if installed):
+  #   choco install postgresql
+  # Option 3: Using winget (Windows 10/11):
+  #   winget install PostgreSQL.PostgreSQL
   ```
+  **Installation Steps:**
+  1. Download PostgreSQL installer from: https://www.postgresql.org/download/windows/
+  2. Run the installer (e.g., `postgresql-16.x-windows-x64.exe`)
+  3. During installation:
+     - Choose installation directory (default is fine)
+     - **Important**: Remember the password you set for the `postgres` superuser
+     - Choose port (default 5432 is fine)
+     - Select locale (default is fine)
+  4. Complete the installation
+  5. **Add PostgreSQL to PATH** (if not done automatically):
+     - Add `C:\Program Files\PostgreSQL\16\bin` to your system PATH
+     - Or use full path: `C:\Program Files\PostgreSQL\16\bin\psql.exe`
 - [ ] Verify PostgreSQL installation
   ```bash
   psql --version
+  # Expected output: psql (PostgreSQL) 16.x
+  # If command not found, check PATH or use full path
   ```
 - [ ] Start PostgreSQL service
   ```bash
-  # Windows: Services → Start PostgreSQL
-  # Linux: sudo systemctl start postgresql
-  # Mac: brew services start postgresql
+  # Windows: 
+  # Method 1: Open Services (services.msc) → Find "postgresql-x64-16" → Start
+  # Method 2: Using PowerShell (as Administrator):
+  #   Start-Service postgresql-x64-16
+  # Method 3: Using Command Prompt (as Administrator):
+  #   net start postgresql-x64-16
   ```
 
 ## Project Setup
