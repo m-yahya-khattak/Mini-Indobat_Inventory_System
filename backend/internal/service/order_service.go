@@ -69,9 +69,7 @@ func (s *OrderService) CreateOrder(ctx context.Context, req model.CreateOrderReq
 	}
 
 	// Calculate total price: (Price × Quantity) - (Discount %)
-	subtotal := product.Price * float64(req.Quantity)
-	discountAmount := subtotal * (req.DiscountPercent / 100.0)
-	totalPrice := subtotal - discountAmount
+	totalPrice := CalculateOrderPrice(product.Price, req.Quantity, req.DiscountPercent)
 
 	// Create order object
 	order := &model.Order{
