@@ -23,9 +23,8 @@ func (s *ProductService) GetAllProducts(ctx context.Context) ([]model.Product, e
 	return s.productRepo.GetAll(ctx)
 }
 
-// CreateProduct creates a new product
+// CreateProduct creates a new product.
 func (s *ProductService) CreateProduct(ctx context.Context, req model.CreateProductRequest) (*model.Product, error) {
-	// Business logic validation
 	if req.Name == "" {
 		return nil, ErrInvalidInput
 	}

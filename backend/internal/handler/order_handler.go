@@ -31,7 +31,6 @@ func (h *OrderHandler) CreateOrder(c *gin.Context) {
 
 	response, err := h.orderService.CreateOrder(c.Request.Context(), req)
 	if err != nil {
-		// Handle specific errors using errors.Is() to check wrapped errors
 		if errors.Is(err, service.ErrInsufficientStock) {
 			c.JSON(http.StatusBadRequest, gin.H{
 				"error": err.Error(),
@@ -51,10 +50,9 @@ func (h *OrderHandler) CreateOrder(c *gin.Context) {
 			return
 		}
 
-		// Generic error - log the actual error for debugging but return user-friendly message
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": "Failed to create order",
-			"details": err.Error(), // Include details for debugging (remove in production if needed)
+			"error":   "Failed to create order",
+			"details": err.Error(),
 		})
 		return
 	}

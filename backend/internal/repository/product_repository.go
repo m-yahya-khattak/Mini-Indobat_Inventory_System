@@ -78,8 +78,7 @@ func (r *ProductRepository) GetByID(ctx context.Context, id int) (*model.Product
 	return &p, nil
 }
 
-// GetByIDWithLock retrieves a product by ID with row-level lock (for transactions)
-// This uses SELECT FOR UPDATE to prevent race conditions
+// GetByIDWithLock retrieves a product by ID with row-level lock using SELECT FOR UPDATE.
 func (r *ProductRepository) GetByIDWithLock(ctx context.Context, tx pgx.Tx, id int) (*model.Product, error) {
 	query := `
 		SELECT id, name, stock, price, created_at, updated_at
@@ -91,7 +90,6 @@ func (r *ProductRepository) GetByIDWithLock(ctx context.Context, tx pgx.Tx, id i
 	var p model.Product
 	var err error
 
-	// Use transaction if provided, otherwise use connection pool
 	if tx != nil {
 		err = tx.QueryRow(ctx, query, id).Scan(
 			&p.ID,

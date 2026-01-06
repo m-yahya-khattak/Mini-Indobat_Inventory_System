@@ -312,6 +312,9 @@ Invalid Input (400 Bad Request):
 **Price Calculation Formula:**
 ```
 Total Price = (Product Price × Quantity) × (1 - Discount Percent / 100)
+
+Example: Price = 10,000, Quantity = 5, Discount = 10%
+Total = (10,000 × 5) × (1 - 10/100) = 50,000 × 0.9 = 45,000
 ```
 
 For complete API documentation with request/response examples and testing instructions, see the [Postman Collection](#postman-collection) section.

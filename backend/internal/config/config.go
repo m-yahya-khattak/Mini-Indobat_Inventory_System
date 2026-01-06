@@ -19,9 +19,8 @@ type Config struct {
 	Env        string
 }
 
-// LoadConfig loads configuration from environment variables
+// LoadConfig loads configuration from environment variables.
 func LoadConfig() (*Config, error) {
-	// Load .env file (ignore error if file doesn't exist)
 	_ = godotenv.Load()
 
 	config := &Config{

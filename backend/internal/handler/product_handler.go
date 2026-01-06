@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"errors"
 	"net/http"
 	"mini-indobat-inventory/internal/model"
 	"mini-indobat-inventory/internal/service"
@@ -41,7 +42,7 @@ func (h *ProductHandler) CreateProduct(c *gin.Context) {
 
 	product, err := h.productService.CreateProduct(c.Request.Context(), req)
 	if err != nil {
-		if err == service.ErrInvalidInput || err == service.ErrInvalidStock || err == service.ErrInvalidPrice {
+		if errors.Is(err, service.ErrInvalidInput) || errors.Is(err, service.ErrInvalidStock) || errors.Is(err, service.ErrInvalidPrice) {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
