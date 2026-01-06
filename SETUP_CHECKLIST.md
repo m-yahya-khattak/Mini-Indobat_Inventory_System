@@ -41,14 +41,22 @@ Use this checklist to set up the development environment for the Mini-Indobat In
   ```
 
 ### Install PostgreSQL
-- [ ] Download and install PostgreSQL ⚠️ **REQUIRED - NOT INSTALLED**
+- [ ] Download and install PostgreSQL ⏳ **IN PROGRESS - Installation in progress**
   ```bash
   # For Windows:
-  # Option 1: Download installer from https://www.postgresql.org/download/windows/
-  # Option 2: Using Chocolatey (if installed):
+  # Option 1: Using winget (Recommended - Windows 10/11):
+  #   PostgreSQL 16 (Stable LTS):
+  #   winget install PostgreSQL.PostgreSQL.16
+  #   
+  #   PostgreSQL 17 (Latest):
+  #   winget install PostgreSQL.PostgreSQL.17
+  #   
+  #   PostgreSQL 18 (Latest):
+  #   winget install PostgreSQL.PostgreSQL.18
+  #
+  # Option 2: Download installer from https://www.postgresql.org/download/windows/
+  # Option 3: Using Chocolatey (if installed):
   #   choco install postgresql
-  # Option 3: Using winget (Windows 10/11):
-  #   winget install PostgreSQL.PostgreSQL
   ```
   **Installation Steps:**
   1. Download PostgreSQL installer from: https://www.postgresql.org/download/windows/
@@ -62,13 +70,13 @@ Use this checklist to set up the development environment for the Mini-Indobat In
   5. **Add PostgreSQL to PATH** (if not done automatically):
      - Add `C:\Program Files\PostgreSQL\16\bin` to your system PATH
      - Or use full path: `C:\Program Files\PostgreSQL\16\bin\psql.exe`
-- [ ] Verify PostgreSQL installation
+- [ ] Verify PostgreSQL installation ⏳ **PENDING - After installation completes**
   ```bash
   psql --version
   # Expected output: psql (PostgreSQL) 16.x
   # If command not found, check PATH or use full path
   ```
-- [ ] Start PostgreSQL service
+- [ ] Start PostgreSQL service ⏳ **PENDING - After installation completes**
   ```bash
   # Windows: 
   # Method 1: Open Services (services.msc) → Find "postgresql-x64-16" → Start
@@ -87,57 +95,80 @@ Use this checklist to set up the development environment for the Mini-Indobat In
   ```
 
 ### Database Setup
-- [ ] Create PostgreSQL database
+- [ ] Verify PostgreSQL installation ⏳ **IN PROGRESS - Installation pending**
+  ```bash
+  psql --version
+  ```
+- [ ] Start PostgreSQL service (if not running automatically)
+  ```bash
+  # Check service status
+  Get-Service postgresql*
+  
+  # Start if needed (as Administrator)
+  Start-Service postgresql-x64-16
+  ```
+- [ ] Create PostgreSQL database ⏳ **PENDING - Waiting for PostgreSQL installation**
   ```bash
   # Option 1: Using createdb command
-  createdb indobat_inventory
+  createdb -U postgres indobat_inventory
   
-  # Option 2: Using psql
+  # Option 2: Using psql (Recommended)
   psql -U postgres
   CREATE DATABASE indobat_inventory;
   \q
   ```
-- [ ] Note database connection details (host, port, user, password, database name)
+- [ ] Note database connection details
+  - Host: localhost
+  - Port: 5432
+  - User: postgres
+  - Password: [Set during PostgreSQL installation]
+  - Database: indobat_inventory
 
 ### Backend Setup
-- [ ] Navigate to backend directory
+- [x] Navigate to backend directory ✅ **COMPLETED**
   ```bash
   cd backend
   ```
-- [ ] Initialize Go module
+- [x] Initialize Go module ✅ **COMPLETED**
   ```bash
   go mod init mini-indobat-inventory
+  # Already exists, ran: go mod tidy
   ```
-- [ ] Install Go dependencies
+- [x] Install Go dependencies ✅ **COMPLETED**
   ```bash
   go mod download
+  go mod tidy
   ```
-- [ ] Install database driver (e.g., pgx or lib/pq)
+- [x] Install HTTP router and middleware ✅ **COMPLETED**
   ```bash
-  go get github.com/lib/pq
-  # or
+  go get github.com/gin-gonic/gin
+  go get github.com/gin-contrib/cors
+  ```
+- [x] Install database driver ✅ **COMPLETED**
+  ```bash
   go get github.com/jackc/pgx/v5
+  go get github.com/jackc/pgx/v5/pgxpool
   ```
-- [ ] Install migration tool (Golang-Migrate or GORM)
+- [x] Install environment variable loader ✅ **COMPLETED**
   ```bash
-  # Option 1: Golang-Migrate
+  go get github.com/joho/godotenv
+  ```
+- [x] Install migration tool ✅ **COMPLETED**
+  ```bash
+  # Using golang-migrate
   go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
-  
-  # Option 2: GORM (if using GORM)
-  go get gorm.io/gorm
-  go get gorm.io/driver/postgres
   ```
-- [ ] Create .env file for backend configuration
+- [x] Create .env file for backend configuration ✅ **COMPLETED**
   ```bash
-  # Create .env file with:
+  # .env file created in backend/ directory with:
   # DB_HOST=localhost
   # DB_PORT=5432
   # DB_USER=postgres
-  # DB_PASSWORD=your_password
+  # DB_PASSWORD=your_password (needs to be updated with actual password)
   # DB_NAME=indobat_inventory
   # SERVER_PORT=8080
   ```
-- [ ] Run database migrations
+- [ ] Run database migrations ⏳ **PENDING - Waiting for PostgreSQL installation**
   ```bash
   # If using golang-migrate
   migrate -path ./migrations -database "postgres://user:password@localhost/indobat_inventory?sslmode=disable" up
