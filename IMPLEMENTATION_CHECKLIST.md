@@ -171,20 +171,21 @@ Use this checklist to track the implementation progress of the Mini-Indobat Inve
 ## Phase 8: Testing
 
 ### Backend Testing
-- [ ] Write unit tests for price calculation logic
-- [ ] Write unit tests for stock validation logic
+- [x] Write unit tests for price calculation logic ✅
+- [x] Write unit tests for stock validation logic ✅
+- [x] Write unit tests for order service input validation ✅
 - [ ] Write integration tests for GET /products
 - [ ] Write integration tests for POST /products
 - [ ] Write integration tests for POST /order
-- [ ] Write concurrent request tests (race condition)
-  - [ ] Simulate 10 concurrent requests
-  - [ ] Verify only 1 succeeds
-  - [ ] Verify stock doesn't go negative
-- [ ] Test edge cases
-  - [ ] Zero stock
-  - [ ] Negative quantity
-  - [ ] Invalid discount percentage
-  - [ ] Non-existent product_id
+- [x] Write concurrent request tests (race condition) ✅ **TESTED MANUALLY WITH POSTMAN**
+  - [x] Simulate 10 concurrent requests ✅
+  - [x] Verify only 1 succeeds ✅
+  - [x] Verify stock doesn't go negative ✅
+- [x] Test edge cases ✅
+  - [x] Zero stock ✅
+  - [x] Negative quantity ✅
+  - [x] Invalid discount percentage ✅
+  - [x] Non-existent product_id ✅
 
 ### Frontend Testing
 - [ ] Test form validation ⏳ **PENDING FRONTEND IMPLEMENTATION**
@@ -249,7 +250,7 @@ Use this checklist to track the implementation progress of the Mini-Indobat Inve
 - [ ] ✅ Frontend: Functional display & UX ⏳ **IN PROGRESS**
 - [ ] ✅ Frontend: Real-time validation (price changes) ⏳ **IN PROGRESS**
 - [ ] ✅ Frontend: Loading state implemented ⏳ **IN PROGRESS**
-- [ ] ✅ Nice to Have: Unit tests created ⏳ **PENDING**
+- [x] ✅ Nice to Have: Unit tests created ✅ **COMPLETED** (Price calculation, stock validation, input validation - 14.3% coverage)
 
 ### Pre-Submission
 - [ ] Test complete application flow
