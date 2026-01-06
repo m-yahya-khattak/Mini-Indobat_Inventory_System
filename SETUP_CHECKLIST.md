@@ -41,7 +41,7 @@ Use this checklist to set up the development environment for the Mini-Indobat In
   ```
 
 ### Install PostgreSQL
-- [ ] Download and install PostgreSQL ⏳ **IN PROGRESS - Installation in progress**
+- [x] Download and install PostgreSQL ✅ **COMPLETED** - PostgreSQL 16.11 installed
   ```bash
   # For Windows:
   # Option 1: Using winget (Recommended - Windows 10/11):
@@ -70,20 +70,14 @@ Use this checklist to set up the development environment for the Mini-Indobat In
   5. **Add PostgreSQL to PATH** (if not done automatically):
      - Add `C:\Program Files\PostgreSQL\16\bin` to your system PATH
      - Or use full path: `C:\Program Files\PostgreSQL\16\bin\psql.exe`
-- [ ] Verify PostgreSQL installation ⏳ **PENDING - After installation completes**
+- [x] Verify PostgreSQL installation ✅ **COMPLETED**
   ```bash
   psql --version
-  # Expected output: psql (PostgreSQL) 16.x
-  # If command not found, check PATH or use full path
+  # Output: psql (PostgreSQL) 16.11
   ```
-- [ ] Start PostgreSQL service ⏳ **PENDING - After installation completes**
+- [x] Start PostgreSQL service ✅ **COMPLETED** - Service is running
   ```bash
-  # Windows: 
-  # Method 1: Open Services (services.msc) → Find "postgresql-x64-16" → Start
-  # Method 2: Using PowerShell (as Administrator):
-  #   Start-Service postgresql-x64-16
-  # Method 3: Using Command Prompt (as Administrator):
-  #   net start postgresql-x64-16
+  # Service: postgresql-x64-16 is running
   ```
 
 ## Project Setup
@@ -95,33 +89,26 @@ Use this checklist to set up the development environment for the Mini-Indobat In
   ```
 
 ### Database Setup
-- [ ] Verify PostgreSQL installation ⏳ **IN PROGRESS - Installation pending**
+- [x] Verify PostgreSQL installation ✅ **COMPLETED**
   ```bash
   psql --version
   ```
-- [ ] Start PostgreSQL service (if not running automatically)
+- [x] Start PostgreSQL service ✅ **COMPLETED** - Service is running
   ```bash
-  # Check service status
-  Get-Service postgresql*
-  
-  # Start if needed (as Administrator)
-  Start-Service postgresql-x64-16
+  # Service: postgresql-x64-16 is running
   ```
-- [ ] Create PostgreSQL database ⏳ **PENDING - Waiting for PostgreSQL installation**
+- [x] Create PostgreSQL database ✅ **COMPLETED**
   ```bash
-  # Option 1: Using createdb command
-  createdb -U postgres indobat_inventory
-  
-  # Option 2: Using psql (Recommended)
+  # Database created using psql:
   psql -U postgres
   CREATE DATABASE indobat_inventory;
   \q
   ```
-- [ ] Note database connection details
+- [x] Note database connection details ✅ **COMPLETED**
   - Host: localhost
   - Port: 5432
   - User: postgres
-  - Password: [Set during PostgreSQL installation]
+  - Password: [Set during PostgreSQL installation/reset]
   - Database: indobat_inventory
 
 ### Backend Setup
