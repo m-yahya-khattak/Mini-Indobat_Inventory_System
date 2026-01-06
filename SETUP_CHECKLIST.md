@@ -177,29 +177,26 @@ Use this checklist to set up the development environment for the Mini-Indobat In
   ```
 
 ### Frontend Setup
-- [ ] Navigate to frontend directory
+- [x] Navigate to frontend directory ✅ **COMPLETED**
   ```bash
   cd frontend
   ```
-- [ ] Initialize Next.js project (if not already initialized)
+- [x] Initialize Next.js project ✅ **COMPLETED**
   ```bash
   npx create-next-app@latest . --yes
   ```
-- [ ] Install dependencies
+- [x] Install dependencies ✅ **COMPLETED**
   ```bash
   npm install
-  # or
-  yarn install
   ```
-- [ ] Install additional dependencies (if needed)
+- [x] Install additional dependencies ✅ **COMPLETED**
   ```bash
   npm install axios
   npm install react-toastify
-  # or other UI libraries as needed
   ```
-- [ ] Create .env.local file for frontend configuration (if needed)
+- [x] Create .env.local file for frontend configuration ✅ **COMPLETED**
   ```bash
-  # Create .env.local file with:
+  # .env.local file created with:
   # NEXT_PUBLIC_API_URL=http://localhost:8080
   ```
 
@@ -233,11 +230,11 @@ Use this checklist to set up the development environment for the Mini-Indobat In
   go run main.go
   # Check if server starts without errors
   ```
-- [ ] Verify frontend can start
+- [x] Verify frontend can start ✅ **COMPLETED**
   ```bash
   cd frontend
   npm run dev
-  # Check if development server starts on http://localhost:3000
+  # Development server starts on http://localhost:3000
   ```
 - [ ] Test API endpoints (using curl, Postman, or browser)
   ```bash
