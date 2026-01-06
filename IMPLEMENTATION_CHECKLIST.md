@@ -109,10 +109,10 @@ Use this checklist to track the implementation progress of the Mini-Indobat Inve
 - [x] Implement database transaction with proper isolation level ✅ (SERIALIZABLE)
 - [x] Use SELECT FOR UPDATE to lock product row ✅
 - [x] Verify stock before and after lock ✅
-- [ ] Test with concurrent requests (10 simultaneous requests for 1 stock) ⏳ **PENDING TESTING**
-- [ ] Ensure only 1 request succeeds, 9 fail ⏳ **PENDING TESTING**
+- [x] Test with concurrent requests (10 simultaneous requests for 1 stock) ✅ **TESTED & WORKING**
+- [x] Ensure only 1 request succeeds, 9 fail ✅ **VERIFIED**
 - [x] Verify stock never goes negative ✅ (Database constraint + validation)
-- [ ] Test edge cases (zero stock, negative stock attempts) ⏳ **PENDING TESTING**
+- [x] Test edge cases (zero stock, negative stock attempts) ✅ **VERIFIED**
 
 ## Phase 5: Frontend - Project Setup
 
@@ -187,11 +187,11 @@ Use this checklist to track the implementation progress of the Mini-Indobat Inve
   - [ ] Non-existent product_id
 
 ### Frontend Testing
-- [ ] Test form validation
-- [ ] Test real-time price calculation
-- [ ] Test error handling and display
-- [ ] Test loading states
-- [ ] Manual testing of complete flow
+- [ ] Test form validation ⏳ **PENDING FRONTEND IMPLEMENTATION**
+- [ ] Test real-time price calculation ⏳ **PENDING FRONTEND IMPLEMENTATION**
+- [ ] Test error handling and display ⏳ **PENDING FRONTEND IMPLEMENTATION**
+- [ ] Test loading states ⏳ **PENDING FRONTEND IMPLEMENTATION**
+- [ ] Manual testing of complete flow ⏳ **PENDING FRONTEND IMPLEMENTATION**
 
 ## Phase 9: Code Quality & Best Practices
 

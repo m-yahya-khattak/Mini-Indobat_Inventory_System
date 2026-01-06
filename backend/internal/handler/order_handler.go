@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"errors"
 	"net/http"
 	"mini-indobat-inventory/internal/model"
 	"mini-indobat-inventory/internal/service"
@@ -30,29 +31,30 @@ func (h *OrderHandler) CreateOrder(c *gin.Context) {
 
 	response, err := h.orderService.CreateOrder(c.Request.Context(), req)
 	if err != nil {
-		// Handle specific errors
-		if err == service.ErrInsufficientStock {
+		// Handle specific errors using errors.Is() to check wrapped errors
+		if errors.Is(err, service.ErrInsufficientStock) {
 			c.JSON(http.StatusBadRequest, gin.H{
 				"error": err.Error(),
 			})
 			return
 		}
-		if err == service.ErrProductNotFound {
+		if errors.Is(err, service.ErrProductNotFound) {
 			c.JSON(http.StatusNotFound, gin.H{
 				"error": err.Error(),
 			})
 			return
 		}
-		if err == service.ErrInvalidQuantity || err == service.ErrInvalidDiscount {
+		if errors.Is(err, service.ErrInvalidQuantity) || errors.Is(err, service.ErrInvalidDiscount) {
 			c.JSON(http.StatusBadRequest, gin.H{
 				"error": err.Error(),
 			})
 			return
 		}
 
-		// Generic error
+		// Generic error - log the actual error for debugging but return user-friendly message
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": "Failed to create order",
+			"details": err.Error(), // Include details for debugging (remove in production if needed)
 		})
 		return
 	}

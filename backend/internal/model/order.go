@@ -14,9 +14,9 @@ type Order struct {
 
 // CreateOrderRequest represents the request body for creating an order
 type CreateOrderRequest struct {
-	ProductID      int     `json:"product_id" binding:"required"`
-	Quantity       int     `json:"quantity" binding:"required,min=1"`
-	DiscountPercent float64 `json:"discount_percent" binding:"required,min=0,max=100"`
+	ProductID       int     `json:"product_id" binding:"required"`
+	Quantity        int     `json:"quantity" binding:"required,min=1"`
+	DiscountPercent float64 `json:"discount_percent" binding:"min=0,max=100"`
 }
 
 // OrderResponse represents the response after creating an order
